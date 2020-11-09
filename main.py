@@ -5,20 +5,23 @@ try:
 	from graph import *
 	from carte import *
 
-	import Tkinter as tk
+	import tkinter as tk #interface graphique
 	from tkinter import Label
 	from tkinter import Button
-	import tkMessageBox
+	import tkinter.messagebox as tkMessageBox
+	import requests
+	import json
 
-	import csv
 	from collections import namedtuple as NT
-	import numpy as np
+	import numpy as np #traitement mathématique
+	import pandas as pd
 
-	from mpl_toolkits.basemap import Basemap
-	import matplotlib.pyplot as plt
+	import folium #map
+	import matplotlib.pyplot as plt #histogramme
 
-	import urllib2 as UR
-	from HTMLParser import HTMLParser as HP
+	from urllib.request import urlopen as UR
+
+
 
 except ImportError as E:
 
