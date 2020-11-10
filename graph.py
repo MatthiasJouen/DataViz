@@ -12,7 +12,7 @@ def histo(wheres, weeks, param):
 	where = None
 	#################################
 
-	extract_data = [] # Data en fonction du Pays/Région/Département
+	extract_data = [[1,2,1,2,3,4]] # Data en fonction du Pays/Région/Département
 	
 	i = 0
 
@@ -62,7 +62,8 @@ def histo(wheres, weeks, param):
 
 
 			if len(weeks)>1:
-				plt.title('''HISTOGRAMME POUR L'ETAT DU(DE) '''+where+' AU '+weeks[position.index(element)])
+				plt.title('''HISTOGRAMME POUR L'ETAT DU(DE) '''+where+' AU ')
+				#+weeks[position.index(element)]
 			else:
 				plt.title('''HISTOGRAMME POUR L'ETAT DU(DE) '''+wheres[position.index(element)]+' AU '+week)
 
@@ -73,15 +74,16 @@ def histo(wheres, weeks, param):
 
 		else:
 
-			data = [extract_data[position.index(element)].cat1, extract_data[position.index(element)].cat2, extract_data[position.index(element)].cat3, extract_data[position.index(element)].cat4, extract_data[position.index(element)].cat5]
+			data = [extract_data[position.index(element)]]
+			# .cat1, extract_data[position.index(element)].cat2, extract_data[position.index(element)].cat3, extract_data[position.index(element)].cat4, extract_data[position.index(element)].cat5
 			x = [[0]*52, [0]*52, [0]*52, [0]*52, [0]*52]
 
 			
 
-			while i<min(len(data[l]) for l in range(len(data))):
-				for j in range(5):
-					x[j][(i%53)-1] += data[j][i]
-				i +=1
+			# while i<min(len(data[l]) for l in range(len(data))):
+			# 	for j in range(5):
+			# 		x[j][(i%53)-1] += data[j][i]
+			# 	i +=1
 
 
 
@@ -92,11 +94,8 @@ def histo(wheres, weeks, param):
 			plt.xlabel("NOMBRE DE MORTS")
 			plt.ylabel("NOMBRE DE SEMAINES")
 
-
-			if len(weeks)>1:
-				plt.title('''HISTOGRAMME POUR L'ETAT DU(DE) '''+where+' AU '+weeks[position.index(element)])
-			else:
-				plt.title('''HISTOGRAMME POUR L'ETAT DU(DE) '''+wheres[position.index(element)]+' AU '+week)
+			plt.title('''HISTOGRAMME POUR L'ETAT DU(DE) '''+wheres[position.index(element)])
+			
 
 
 
@@ -105,4 +104,3 @@ def histo(wheres, weeks, param):
 
 			
 	plt.show()
-	plt.close()
