@@ -4,6 +4,7 @@ try:
 	#from fonctions import *
 	from graph import *
 	from carte import *
+	from fonctions import readJson, countriesList
 
 	import tkinter as tk #interface graphique
 	from tkinter import Label
@@ -20,6 +21,8 @@ try:
 	import matplotlib.pyplot as plt #histogramme
 
 	from urllib.request import urlopen as UR
+
+	import os
 
 
 
@@ -157,13 +160,14 @@ def suppress(window):
 
 def generate():
 
+	project_path = os.getcwd()
 	try:
 		##########################################################
 		# Création des itérables selon le choix de l'utilisateur #
 		##########################################################
+		all_data = readJson(project_path)
 
-		state_list = []
-		year_list = []
+		countryList = countriesList(all_data)
 
 	except Exception:
 		tkMessageBox.showinfo('ERREUR : Interne', 'Un problème est survenu veuillez réessayer')
