@@ -1,6 +1,19 @@
 # DataViz
 
 version 0.2
+#                                                                           Rapport d'analyse
+
+### Sujet : 
+Notre sujet traite des données liées à la Covid19. 
+Le but étant de récupérer des informations ouvertes à tous, de les récupérer dans un fichier au format json et d’ensuite les traiter.
+Notre objectif est de récupérer des informations sur le nombre de cas, de décès et de guérisons en fonction d’une date et d’un lieu.
+
+Les histogrammes affichent des informations sur le nombre de nouveaux cas, de guérisons et de morts en fonction d'un lieu.
+La carte quant à elle permet d'avoir une vision plus globale sur la densité de cas en fonction des régions du monde.
+
+### Ce qu'on peut en tirer :
+
+...rapport ici
 
 #                                                                           User Guide
 
@@ -36,3 +49,7 @@ Il vous manque plus qu’à ouvrir votre navigateur et copier cette adresse : <h
 
 
 (Attention les commandes précisés pour les configurations de l’éditeur de code ne sont valables que pour Visual Studio Code.)
+
+#                                                                           Developper guide
+
+... mettre des infos sur le code et la maniere dont on a dev
