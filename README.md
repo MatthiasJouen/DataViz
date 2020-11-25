@@ -2,21 +2,21 @@
 
 version 0.2
 
-#User Guide#
+#                                                                           User Guide
 
 Afin de faire fonctionner le projet sur sa machine, vous aurez besoin de plusieurs pré-requis.
 
-####Installation de python :####
+#### Installation de python :
 Tout d’abord il vous faudra une version de python supérieure à la version 3.
-Voici le lien de téléchargement pour installer Python, attention à bien choisir le bon système d'exploitation et si vous êtes sur Windows, veuillez à bien choisir la version 32 ou 64 bits en fonction de votre machine : (https://www.python.org/downloads/)
+Voici le lien de téléchargement pour installer Python, attention à bien choisir le bon système d'exploitation et si vous êtes sur Windows, veuillez à bien choisir la version 32 ou 64 bits en fonction de votre machine : <https://www.python.org/downloads/>
 
 Pour vérifier que Python est bien installé, vous pouvez taper cette commande dans votre invite de commande : “python”, la réponse dans ce cas sera la version de python que vous possédez.
 
-####Télécharger notre projet : ####
+#### Télécharger notre projet :
 Afin de pouvoir accéder à notre projet, il vous faudra le télécharger. Voici le lien du projet sur Git :
 
-####Avoir un éditeur de code :####
-Pour accéder au projet en détail, il vous faudra un éditeur de code. Celui que nous conseillons est Visual Studio Code, qui est gratuit et très simple d'utilisation. Voici le lien de téléchargement : (https://code.visualstudio.com/)
+#### Avoir un éditeur de code :
+Pour accéder au projet en détail, il vous faudra un éditeur de code. Celui que nous conseillons est Visual Studio Code, qui est gratuit et très simple d'utilisation. Voici le lien de téléchargement : <https://code.visualstudio.com/>
 Pareil que pour python, attention à bien choisir la version correspondante à votre machine.
 
 Une fois téléchargé, l’ouvrir et cliquer sur “File” → “Open Folder” → et sélectionner le dossier de notre projet.
@@ -29,9 +29,9 @@ Vous serez normalement directement dans le bon dossier, écrivez alors :
  **“pip install -r requirement.txt”**. 
 Cette commande installera alors tous les requis. 
 
-####Lancer le projet : ####
+#### Lancer le projet :
 La dernière étape est la plus simple. Il vous suffit de vous placer dans le fichier **“main.py”** et de cliquer sur la petite flèche verte en haut à droite Visual Studio ou alors de faire **“CTRL+F5”**. Le projet s’est alors lancé sur votre navigateur.
-Il vous manque plus qu’à ouvrir votre navigateur et copier cette adresse : (http://127.0.0.1:8050/)
+Il vous manque plus qu’à ouvrir votre navigateur et copier cette adresse : <http://127.0.0.1:8050/>
 
 
 
