@@ -32,7 +32,7 @@ Afin de pouvoir accéder à notre projet, il vous faudra le télécharger. Voici
 Pour accéder au projet en détail, il vous faudra un éditeur de code. Celui que nous conseillons est Visual Studio Code, qui est gratuit et très simple d'utilisation. Voici le lien de téléchargement : <https://code.visualstudio.com/>
 Pareil que pour python, attention à bien choisir la version correspondante à votre machine.
 
-Une fois téléchargé, l’ouvrir et cliquer sur “File” → “Open Folder” → et sélectionner le dossier de notre projet.
+Une fois téléchargé, l’ouvrir et cliquer sur **“File”** → **“Open Folder”** → et sélectionnez le dossier de notre projet.
 
 Faites ensuite **“CTRL+SHIFT+P”** puis **“Python : Select Interpreter”**. Sélectionnez ensuite la version de python que vous avez installée. Elle se trouve dans la plupart des cas dans : \AppData\Local\Programs\Python\…\python.exe 
 
