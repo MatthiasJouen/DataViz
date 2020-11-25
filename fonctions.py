@@ -100,65 +100,37 @@ def readJson(project_path):
 # Fonctions pour extraire les datas du Json (Date, lieu, nb cas, nb mort, nb guérisons) #
 #########################################################################################
 
-def getWeekLimit(currentDate):
-    
-    calendar = currentDate.isocalendar()
-    weekDay = calendar[2]
-
-    weekStart = currentDate - timedelta(days=(weekDay - 1))
-    weekEnd = currentDate + timedelta(days=(7 - weekDay))
-
-    dateStart = weekStart.isoformat()
-    dateEnd = weekEnd.isoformat()
-
-    return dateStart+" au "+dateEnd
-
 def targetDataPerWeek(json_data, target):
-    cases = list()
-    deaths = list()
-    heals = list()
-    weeks = list()
 
-    pos = -1
+    cases = 0
+    deaths = 0
+    heals = 0
 
     for item in json_data:
         if(item["nom"].lower() == target.lower()):
-            values = item["date"].split('-')
             
-            currentDate = getWeekLimit(date(int(values[0]), int(values[1]), int(values[2])))
+            if(item["cas"] != ""):
+                case += int(item["cas"])
 
-            if(item["cas"] == ""):
-                case = 0
-            else:
-                case = int(item["cas"])
-
-            if(item["deces"] == ""):
-                death = 0
-            else:
-                death = int(item["deces"])
+            if(item["deces"] != ""):
+                death += int(item["deces"])
             
-            if(item["guerisons"] == ""):
-                heal = 0
-            else:
-                heal = int(item["guerisons"])
-
-            
-
-            if(currentDate not in weeks):
-                weeks.append(currentDate)
-                pos += 1
-                
-                cases.append(case)
-                deaths.append(death)
-                heals.append(heal)
-            else:
-                cases[pos] += case
-                deaths[pos] += death
-                heals[pos] += heal
+            if(item["guerisons"] != ""):
+                heal += int(item["guerisons"])
     
-    return cases, deaths, heals, weeks
-            
-##### Definition du chemin du projet et récupération des datas ####
-#project_path = os.getcwd()                                       #
-#all_data = readJson(project_path)                                #
-################################################################### 
+    return cases, deaths, heals
+
+def histoFromJson(all_data):
+	histoDatas = { "Name":[], "Cases":[], "Healed":[], "Deads":[] }
+
+	countryDict = countriesList(all_data)
+
+	for country in countryDict.values():
+		cases, deaths, heals = targetDataPerWeek(all_data, country)
+
+		histoDatas["Country"].append(country)
+		histoDatas["Cases"].append(cases)
+		histoDatas["Healed"].append(heals)
+		histoDatas["Deads"].append(deaths)
+	
+	return histoDatas
