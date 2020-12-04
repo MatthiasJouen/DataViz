@@ -29,4 +29,5 @@ try:
 if __name__ == '__main__':
 	# Lancer programme principal
 	histogramme.app.run_server(debug=True)
+	create_map()
 	pass
