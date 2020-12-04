@@ -17,6 +17,14 @@ import csv
 # Fonction pour associer Région/pays/département à ses coordonnées géographique #
 #################################################################################
 
+def country_code_association(project_path, countryName):
+    with open(path.join(project_path, "pays2020.csv"), "r") as f:
+        reader = csv.reader(f, delimiter=',')
+        for row in reader:
+            if(row[5].lower() == countryName.lower):
+                return row[-2]
+
+                
 def countriesList(json_data):
     contries = dict()
 
@@ -24,7 +32,7 @@ def countriesList(json_data):
         if ("code" in item.keys()):
             if (len(item["code"].split("-")) == 1):
                 contries[item["code"]] = item["nom"]
-    
+
     return contries
 
 
@@ -34,20 +42,21 @@ def getCountryCoordinateByName(countryName, project_path):
         for row in reader:
             if(row[-1].lower() == countryName.lower):
                 return (row[1], row[2])
-    
+
     return None
 
 #############################################
 # Fonctions pour extraire récuperer le Json #
 #############################################
- 
+
+
 def get_json_data(project_path):
     last = time_since_last_call(project_path)
     now = datetime.now()
-    
+
     diff = now - last
     hoursSinceLastCall = diff.total_seconds()/60/3600
-    
+
     if (hoursSinceLastCall < 1):
         raise PermissionError("You have to wait 1 hour before calling again")
 
@@ -59,7 +68,7 @@ def get_json_data(project_path):
 
     with open(path.join(project_path, "coronavirus.json"), "w") as f:
         json.dump(json_data, f)
-    
+
 
 def time_since_last_call(project_path):
     old_path = path.join(project_path, "old.txt")
@@ -72,17 +81,20 @@ def time_since_last_call(project_path):
                 return datetime.now()
     else:
         save_time_call(project_path, True)
-    
+
     return datetime.now()
+
 
 def save_time_call(project_path, new=False):
     if(new):
         now = datetime.now()
         with open(path.join(project_path, "old.txt"), "w") as f:
-            f.write(datetime(now.year, now.month, now.day, now.hour-1, now.minute, now.second).isoformat())
+            f.write(datetime(now.year, now.month, now.day,
+                    now.hour-1, now.minute, now.second).isoformat())
     else:
         with open(path.join(project_path, "old.txt"), "w") as f:
             f.write(datetime.now().isoformat())
+
 
 def readJson(project_path):
     try:
@@ -93,7 +105,7 @@ def readJson(project_path):
 
     with open(path.join(project_path, "coronavirus.json"), "r") as f:
         content = json.load(f)
-    
+
     return content
 
 #########################################################################################
@@ -108,29 +120,39 @@ def targetDataPerWeek(json_data, target):
 
     for item in json_data:
         if(item["nom"].lower() == target.lower()):
-            
+
             if(item["cas"] != ""):
-                case += int(item["cas"])
+                cases += int(item["cas"])
 
             if(item["deces"] != ""):
-                death += int(item["deces"])
-            
+                deaths += int(item["deces"])
+
             if(item["guerisons"] != ""):
-                heal += int(item["guerisons"])
-    
+                heals += int(item["guerisons"])
+
     return cases, deaths, heals
 
-def histoFromJson(all_data):
-	histoDatas = { "Name":[], "Cases":[], "Healed":[], "Deads":[] }
+def histoFromJson(all_data, target=""):
+    histo = { "X": [], "Country": [], "number": [] }
+    
+    countryDict = countriesList(all_data)
+    if(target != ""):
+        cases, deaths, heals = targetDataPerWeek(all_data, target)
+        return { "X": ["Cas", "Décès", "Guérison(s)"], "Country": [target, target, target], "number": [cases, heals, deaths] }
 
-	countryDict = countriesList(all_data)
+    for country in countryDict.values():
+        cases, deaths, heals = targetDataPerWeek(all_data, country)
+        
+        histo["X"].append("Cas")
+        histo["X"].append("Décès")
+        histo["X"].append("Guérison(s)")
 
-	for country in countryDict.values():
-		cases, deaths, heals = targetDataPerWeek(all_data, country)
-
-		histoDatas["Country"].append(country)
-		histoDatas["Cases"].append(cases)
-		histoDatas["Healed"].append(heals)
-		histoDatas["Deads"].append(deaths)
-	
-	return histoDatas
+        histo["Country"].append(country)
+        histo["Country"].append(country)
+        histo["Country"].append(country)
+        
+        histo["number"].append(cases)
+        histo["number"].append(heals)
+        histo["number"].append(deaths)
+        
+    return histo
