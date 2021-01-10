@@ -2,6 +2,7 @@
 
 from collections import namedtuple as NT
 import numpy as np
+import pandas as pd
 
 from os import path
 import os
@@ -9,6 +10,7 @@ import os
 from datetime import datetime, timedelta
 from datetime import date
 import requests
+import urllib
 
 import json
 import csv
@@ -24,7 +26,7 @@ def country_code_association(project_path, countryName):
             if(row[5].lower() == countryName.lower):
                 return row[-2]
 
-                
+
 def countriesList(json_data):
     contries = dict()
 
@@ -44,6 +46,7 @@ def getCountryCoordinateByName(countryName, project_path):
                 return (row[1], row[2])
 
     return None
+    
 
 #############################################
 # Fonctions pour extraire récuperer le Json #
@@ -156,3 +159,60 @@ def histoFromJson(all_data, target=""):
         histo["number"].append(deaths)
         
     return histo
+
+
+def data_for_map(all_data, target=""):
+    if(target == ""):
+        return None
+    
+    cases, deaths, heals = targetDataPerWeek(all_data, target)
+
+    return {target:{"deaths": deaths, "cases": cases, "healed":heals}}
+
+
+def data_by_dept(all_data):
+    data = list()
+    lst = [dico for dico in all_data if "DEP" in dico["code"]]
+    for elem in lst:
+        if("DEP" in elem["code"]):        
+            cases, deaths, heals = targetDataPerWeek(lst, elem["name"])
+            dep = dict()
+            dep["code"] = elem["code"].replace("DEP-", "")
+            dep["nom"] = elem["nom"]
+            dep["cases"] = cases
+            dep["deaths"] = deaths
+            dep["heals"] = heals
+
+            data.append(dep)
+    return data
+
+
+def get_data_with_url():
+    #On recupere les donnees de l'api et on les retournes sous DataFrame
+    url = 'https://coronavirusapi-france.now.sh/AllLiveData'
+    with urllib.request.urlopen(url) as url:
+        data = json.loads(url.read().decode())
+        df = pd.json_normalize(data)
+        dt = df.to_dict()
+        return pd.DataFrame.from_dict(dt['allLiveFranceData'][0])
+
+"""
+def get_data_by_regions(filter):
+    all_data = []
+
+    global_data = get_data_with_url()
+    if global_data.empty():
+        print("Empty data for date " + datetime.today().strftime('%Y-%m-%d'))
+    else:
+        REGIONS = ["11", "24", "27", "28", "32", "44", "52", "53", "75", "76", "84", "93", "94"]
+        for region in REGIONS:
+            name = data_utils.get_from_global_data(global_data, "REG-"+region, "nom")
+            data = data_utils.get_from_global_data(global_data, "REG-"+region, filter)
+            data_for_day = {}
+            data_for_day["region_nom"] = name
+            data_for_day["region_num"] = region
+            data_for_day[filter] = data
+            all_data.append(data_for_day)
+
+    return all_data
+"""

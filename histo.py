@@ -1,23 +1,49 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
-import matplotlib.pyplot as plt
-from numpy.lib.function_base import angle
+# Run this app with `python app.py` and
+# visit http://127.0.0.1:8050/ in your web browser.
+
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import plotly.express as px
 import pandas as pd
-#from fonctions import *
 
-def histoCas(where, when, number, index):
-       
-    # Create figure and plot space
-    fig, ax = plt.subplots(figsize=(7, 9))
 
-    # Add x-axis and y-axis
-    ax.bar(when[index],number[index],color='blue', joinstyle='round')
+def createDash(histoDatas, ordonnee, abscisse="", color=""):
+    external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-    # Set title and labels for axes
-    ax.set(xlabel="Date",
-        ylabel="Nombre",
-        title="Nombre de cas en fonction du temps : "+ where[index])
+    app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-    # Rotate tick marks on x-axis
-    plt.setp(ax.get_xticklabels(), rotation=45)
-    plt.show()
+    df = pd.DataFrame(histoDatas)
+
+    figures = []
+    for ord in ordonnee:
+        figures.append(px.bar(df, x=abscisse, y=ord, color=color, barmode="group"))
+
+    app.layout = html.Div(children=[
+        html.H1(children='CAS COVID 19'),
+
+        html.Div([
+            html.Div([
+                dcc.Graph(
+                    id='covid-rea',
+                    figure=figures[0]
+                )
+            ]),
+            html.Div([
+                dcc.Graph(
+                    id='covid-dead',
+                    figure=figures[1]
+                )
+            ]),
+            html.Div([
+                dcc.Graph(
+                    id='covid-healed',
+                    figure=figures[2]
+                )
+            ]),
+        ])         
+    ])
+
+    app.run_server(debug=True)

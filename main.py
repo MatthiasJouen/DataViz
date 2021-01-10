@@ -1,47 +1,49 @@
 # coding: utf-8
+from histo import createDash
+from fonctions import get_data_with_url, readJson, histoFromJson
+from carte import create_map
 
-try:
-	#from fonctions import *
-	from fonctions import readJson, histoFromJson
-	from app import createDash
+import pandas as pd
+import urllib.request, json
+import json
+import folium
+import datetime
+import requests
+import math
 
-	import requests
-	import json
+import os
 
-	import numpy as np #traitement mathématique
-
-	import dash
-	import dash_core_components
-	import dash_html_components
-
-	import pandas as pd
-
-	import folium #map
-	import matplotlib.pyplot as plt #histogramme
-
-	from urllib.request import urlopen as UR
-
-	import os
-	import sys, getopt
-
-
-except ImportError as E:
-
-	print('''Il manque un ou plusieurs modules.\nEn effet le programme a rencontré l'erreur suivante : \n\n''' + str(E))
-	exit()
-
-
-def generate(project_path, target):
-
-	all_data = readJson(project_path)
-	histo = histoFromJson(all_data, target)
+def main():
+    df = get_data_with_url()
 	
-	
-	createDash(histo, "X", "number", "Country")
-	
-"""
-def main(argv):
+    #On supprime les colonnes qu'on a pas besoin
+    del df['source']
+    del df['sourceType']
+    del df['decesEhpad']
+    del df['casConfirmesEhpad']
+    del df['casConfirmes']
+    del df['nouvellesHospitalisations']
+    del df['nouvellesReanimations']
+    
+    #On supprime les lignes de regions
+    number_regions = ["01", "02", "03", "04", "06", "05", "11", "24", "27", "28", "32", "44", "52", "53", "75", "76", "84", "93", "94"]
+    for region in number_regions:
+        index = df.index
+        condition = df["code"] == "REG-"+region
+        indices = index[condition]
+        df.drop(indices, inplace=True)
 
+    #On mets de cote les valeurs pour la France entiere
+    indexNames = df[df['nom'] == 'France'].index
+    df_France = df[df['nom'] == 'France'].values
+
+    #on les enleve du DataFrame
+    df.drop(indexNames, inplace=True)
+
+    project_path = os.getcwd()
+    create_map(project_path, df)
+
+    createDash(df, ["reanimation","deces","gueris"], "nom", "date")
+    
 if __name__ == '__main__':
-	main(sys.argv[1:])
-"""
+    main()
