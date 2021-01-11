@@ -115,6 +115,8 @@ def readJson(project_path):
 # Fonctions pour extraire les datas du Json (Date, lieu, nb cas, nb mort, nb guérisons) #
 #########################################################################################
 
+
+#plus utile ?
 def targetDataPerWeek(json_data, target):
 
     cases = 0
@@ -160,7 +162,7 @@ def histoFromJson(all_data, target=""):
         
     return histo
 
-
+#plus utile ?
 def data_for_map(all_data, target=""):
     if(target == ""):
         return None
@@ -182,7 +184,6 @@ def data_by_dept(all_data):
             dep["cases"] = cases
             dep["deaths"] = deaths
             dep["heals"] = heals
-
             data.append(dep)
     return data
 
@@ -196,23 +197,3 @@ def get_data_with_url():
         dt = df.to_dict()
         return pd.DataFrame.from_dict(dt['allLiveFranceData'][0])
 
-"""
-def get_data_by_regions(filter):
-    all_data = []
-
-    global_data = get_data_with_url()
-    if global_data.empty():
-        print("Empty data for date " + datetime.today().strftime('%Y-%m-%d'))
-    else:
-        REGIONS = ["11", "24", "27", "28", "32", "44", "52", "53", "75", "76", "84", "93", "94"]
-        for region in REGIONS:
-            name = data_utils.get_from_global_data(global_data, "REG-"+region, "nom")
-            data = data_utils.get_from_global_data(global_data, "REG-"+region, filter)
-            data_for_day = {}
-            data_for_day["region_nom"] = name
-            data_for_day["region_num"] = region
-            data_for_day[filter] = data
-            all_data.append(data_for_day)
-
-    return all_data
-"""
