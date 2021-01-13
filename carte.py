@@ -25,7 +25,7 @@ def create_map_hospi(project_path, data, filter=None):
     choropleth.geojson.add_child(
         folium.features.GeoJsonTooltip(['nom'], labels=False)
     )
-    Map.save(outfile=path.join(project_path, 'new_hospi.html'))
+    Map.save(outfile=path.join(project_path, 'html/new_hospi.html'))
 
 def create_map_gueris(project_path, data, filter=None):
     Map = folium.Map(location=[47.1539,2.2508] ,zoom_start=5)#centre de la france
@@ -44,7 +44,7 @@ def create_map_gueris(project_path, data, filter=None):
     choropleth.geojson.add_child(
         folium.features.GeoJsonTooltip(['nom'], labels=False)
     )
-    Map.save(outfile=path.join(project_path, 'gueris.html'))
+    Map.save(outfile=path.join(project_path, 'html/gueris.html'))
 
 def create_map_deces(project_path, data, filter=None):
     Map = folium.Map(location=[47.1539,2.2508] ,zoom_start=5)#centre de la france
@@ -63,5 +63,5 @@ def create_map_deces(project_path, data, filter=None):
     choropleth.geojson.add_child(
         folium.features.GeoJsonTooltip(['nom'], labels=False)
     )
-    Map.save(outfile=path.join(project_path, 'deces.html'))
+    Map.save(outfile=path.join(project_path, 'html/deces.html'))
     

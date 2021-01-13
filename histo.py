@@ -7,12 +7,12 @@ import plotly.express as px
 import pandas as pd
 
 
-def createHisto(histoDatas, ordonnee, abscisse, color="", app=""):
+def createHisto(title, histoDatas, ordonnee, abscisse):
     
     df = pd.DataFrame(histoDatas)
     figures = []
-    for ord in ordonnee:
-        figures.append(px.bar(df, x=abscisse, y=ord, color=color, barmode="group"))
+    for ord,tit in zip(ordonnee, title):
+        figures.append(px.bar(df, x=abscisse, y=ord, color=ord, barmode="group", title=tit))
     return figures
     
 
