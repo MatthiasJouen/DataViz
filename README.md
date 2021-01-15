@@ -14,10 +14,10 @@ La carte quant à elle permet d'avoir une vision plus globale sur la densité de
 ### Ce qu'on peut en tirer :
 
 D'après les résultats observés, on peut voir que l'est et le centre de la France sont les régions avec le plus d'hospitalisations (voir carte ci-dessous) : 
-![Carte France Hospi](https://github.com/MatthiasJouen/DataViz/tree/main/images/france_hospi.PNG?raw=true)
+* ![Carte France Hospi](https://github.com/MatthiasJouen/DataViz/tree/main/images/france_hospi.PNG?raw=true)
 On observe également que les régions montrant un nombre élevé de guérison à la Covid sont également celles présentant un nombre de décès très important. Les données montrent également que le nombre total de décès est supérieur au nombre total d'hospitalisation montrant bien le manque de lits d'hôpital observé au printemps 2020.
 Les Bouches-du-Rhône ont encore Paris ont été très touché par la pandémie, en démontre l'histogramme des décès :
-![Décès à Paris](https://github.com/MatthiasJouen/DataViz/tree/main/images/paris_deces.PNG?raw=true)
+* ![Décès à Paris](https://github.com/MatthiasJouen/DataViz/tree/main/images/paris_deces.PNG?raw=true)
 
 
 
