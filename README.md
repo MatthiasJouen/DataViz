@@ -64,18 +64,18 @@ Tous les scripts python nécessaire au bon fonctionnement du projet se trouve da
 
 Les fichiers sont spéarés : un est pour les histos et l'affichage en HTML (histo.py), l'autre crée les différentes cartes de France (carte.py), un autre appelle l'API et stocke les données (fonctions.py), et le dernier fait la centralisation (main.py).
 
-####Map
+#### Map
 Le code pour la création de la map est un peu particulier car nous avons un autre fichier 'departements.geojson'. Ce fichier contient les coordonnées des départements et c'est ce qui nous permet de voir le nom du départements lorsque nous passons la souris dessus sur la map, et c'est aussi ça qui fait le lien avec les données.
 Une fois crée, la carte est enregistré en tant que fichier html et nous la récupérerons plus tard pour l'afficher dans la page complète.
 </br>![Code d'une map](https://github.com/MatthiasJouen/DataViz/tree/main/images/map_code.PNG?raw=true)
 
 
-####Histo
+#### Histo
 L'histogramme lui fait le lien entre le nombre de la colonne des données que nous lui donnons (axe y) et les noms des départements.
 C'est la librairie plotly qui nous permet de gérer ces histogrammes.
 
 
-####Html
+#### Html
 L'affichage en html se fait par l'intérmédiaire de Dash. Cela nous permet  de créer une page web en html avec une syntaxe presque similaire à l'html 'classique'.
 Nous pouvons gérer les couleurs, les polices etc. 
 Nous avons donc mis les histogrammes correspondant aux cartes les unes sous les autres afin d'avoir une cohérence.
