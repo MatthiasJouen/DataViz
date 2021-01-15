@@ -17,7 +17,7 @@ D'après les résultats observés, on peut voir que l'est et le centre de la Fra
 ![Carte France Hospi](/images/france_hospi.png)
 On observe également que les régions montrant un nombre élevé de guérison à la Covid sont également celles présentant un nombre de décès très important. Les données montrent également que le nombre total de décès est supérieur au nombre total d'hospitalisation montrant bien le manque de lits d'hôpital observé au printemps 2020.
 Les Bouches-du-Rhône ont encore Paris ont été très touché par la pandémie, en démontre l'histogramme des décès :
-![Décès à Paris](https://github.com/MatthiasJouen/DataViz/tree/main/images/paris_deces.PNG?raw=true)
+![](https://github.com/MatthiasJouen/DataViz/tree/main/images/paris_deces.PNG?raw=true)
 
 
 
