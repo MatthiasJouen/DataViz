@@ -1,4 +1,4 @@
 
-__pycache__/graph.cpython-39.pyc
-__pycache__/carte.cpython-39.pyc
-__pycache__/fonctions.cpython-39.pyc
+__pycache__/*
+.vscode/*
+src/__pycache__/*

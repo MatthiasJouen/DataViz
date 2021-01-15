@@ -1,4 +1,3 @@
-numpy
 plotly_express
 dash
 dash_core_components
