@@ -14,10 +14,10 @@ La carte quant à elle permet d'avoir une vision plus globale sur la densité en
 ### Ce qu'on peut en tirer :
 
 D'après les résultats observés, on peut voir que l'est et le centre de la France sont les régions avec le plus d'hospitalisations (voir carte ci-dessous) : 
-</br>![Carte France Hospi](https://github.com/MatthiasJouen/DataViz/tree/main/images/france_hospi.PNG?raw=true)
+</br>![Carte France Hospi](images/france_hospi.PNG)
 </br>On observe également que les régions montrant un nombre élevé de guérison à la Covid sont également celles présentant un nombre de décès très important. Les données montrent également que le nombre total de décès est supérieur au nombre total d'hospitalisation montrant bien le manque de lits d'hôpital observé au printemps 2020.
 Les Bouches-du-Rhône ont encore Paris ont été très touché par la pandémie, en démontre l'histogramme des décès :
-</br>![Décès à Paris](https://github.com/MatthiasJouen/DataViz/tree/main/images/paris_deces.PNG?raw=true)
+</br>![Décès à Paris](images/paris_deces.PNG)
 
 
 
@@ -67,7 +67,7 @@ Les fichiers sont spéarés : un est pour les histos et l'affichage en HTML (his
 #### Map
 Le code pour la création de la map est un peu particulier car nous avons un autre fichier 'departements.geojson'. Ce fichier contient les coordonnées des départements et c'est ce qui nous permet de voir le nom du départements lorsque nous passons la souris dessus sur la map, et c'est aussi ça qui fait le lien avec les données.
 Une fois crée, la carte est enregistré en tant que fichier html et nous la récupérerons plus tard pour l'afficher dans la page complète.
-</br>![Code d'une map](https://github.com/MatthiasJouen/DataViz/tree/main/images/map_code.PNG?raw=true)
+</br>![Code d'une map](images/map_code.PNG)
 
 
 #### Histo
