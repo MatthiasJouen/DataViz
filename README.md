@@ -6,10 +6,10 @@ version 1.0
 ### Sujet : 
 Notre sujet traite des données liées à la Covid19. 
 Le but étant de récupérer des informations ouvertes à tous, de les récupérer via une API opendata et d’ensuite les traiter.
-Notre objectif est de récupérer des informations sur le nombre de cas, de décès et de guérisons en fonction d’une date et d’un lieu.
+Notre objectif est de récupérer des informations sur le nombre d'hospitalisations, de décès et de guérisons sur l'ensemble du territoire Français depuis le début de la pandémie.
 
-Les histogrammes affichent des informations sur le nombre de nouveaux cas, de guérisons et de morts en fonction d'un lieu.
-La carte quant à elle permet d'avoir une vision plus globale sur la densité de cas en fonction des régions du monde.
+Les histogrammes affichent des informations sur le nombre de décès, de guérisons et d'hospitalisations en fonction des départements Français.
+La carte quant à elle permet d'avoir une vision plus globale sur la densité en fonction du critère.
 
 ### Ce qu'on peut en tirer :
 
@@ -17,7 +17,7 @@ D'après les résultats observés, on peut voir que l'est et le centre de la Fra
 </br>![Carte France Hospi](https://github.com/MatthiasJouen/DataViz/tree/main/images/france_hospi.PNG?raw=true)
 </br>On observe également que les régions montrant un nombre élevé de guérison à la Covid sont également celles présentant un nombre de décès très important. Les données montrent également que le nombre total de décès est supérieur au nombre total d'hospitalisation montrant bien le manque de lits d'hôpital observé au printemps 2020.
 Les Bouches-du-Rhône ont encore Paris ont été très touché par la pandémie, en démontre l'histogramme des décès :
-</br>* ![Décès à Paris](https://github.com/MatthiasJouen/DataViz/tree/main/images/paris_deces.PNG?raw=true)
+</br>![Décès à Paris](https://github.com/MatthiasJouen/DataViz/tree/main/images/paris_deces.PNG?raw=true)
 
 
 
@@ -61,4 +61,22 @@ Il vous manque plus qu’à ouvrir votre navigateur et copier cette adresse : <h
 ### Organisation du projet :
 Afin de faciliter les modification de code et différentes versions d'avancement du projet, un dépôt github a été mis en place. On a utilisé une branche chacun, une pour récupérer les datas et une autre pour mettre en place les histogrammes et les cartes (dans un premier avec de fausses données puis avec celles récupérées de l'API).
 Tous les scripts python nécessaire au bon fonctionnement du projet se trouve dans le dossier src/, les fichiers html générés pour l'affichage des cartes sont sauvegardés sous le dossier html de la racine du projet.
+
+Les fichiers sont spéarés : un est pour les histos et l'affichage en HTML (histo.py), l'autre crée les différentes cartes de France (carte.py), un autre appelle l'API et stocke les données (fonctions.py), et le dernier fait la centralisation (main.py).
+
+####Map
+Le code pour la création de la map est un peu particulier car nous avons un autre fichier 'departements.geojson'. Ce fichier contient les coordonnées des départements et c'est ce qui nous permet de voir le nom du départements lorsque nous passons la souris dessus sur la map, et c'est aussi ça qui fait le lien avec les données.
+Une fois crée, la carte est enregistré en tant que fichier html et nous la récupérerons plus tard pour l'afficher dans la page complète.
+</br>![Code d'une map](https://github.com/MatthiasJouen/DataViz/tree/main/images/map_code.PNG?raw=true)
+
+
+####Histo
+L'histogramme lui fait le lien entre le nombre de la colonne des données que nous lui donnons (axe y) et les noms des départements.
+C'est la librairie plotly qui nous permet de gérer ces histogrammes.
+
+
+####Html
+L'affichage en html se fait par l'intérmédiaire de Dash. Cela nous permet  de créer une page web en html avec une syntaxe presque similaire à l'html 'classique'.
+Nous pouvons gérer les couleurs, les polices etc. 
+Nous avons donc mis les histogrammes correspondant aux cartes les unes sous les autres afin d'avoir une cohérence.
 #
